@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "EntranceGuard"
-  s.version      = "0.0.4"
+  s.version      = "0.0.6"
   s.summary      = "小门安家模块"
 
   # This description is used to generate tags and improve search results.
@@ -117,8 +117,8 @@ EOS
   # s.preserve_paths = "FilesToSave", "MoreFilesToSave"
 
 # 用到的第三方的.a .framework 如微信，支付宝
-  spec.vendored_libraries = 'EntranceGuard/EGAPP/**/*.{a}'
-  spec.vendored_frameworks = 'EntranceGuard/EGAPP/**/*.{framework}'
+  s.vendored_libraries = 'EntranceGuard/EGAPP/**/*.{a}'
+  s.vendored_frameworks = 'EntranceGuard/EGAPP/**/*.{framework}'
   
   # ――― Project Linking ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
