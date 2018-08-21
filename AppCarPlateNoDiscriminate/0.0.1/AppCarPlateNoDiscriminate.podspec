@@ -92,7 +92,7 @@ Pod::Spec.new do |s|
   #
 
   s.source_files  = "AppCarPlateNoDiscriminate/Core/*.{h,m}"
-  s.resources = "AppCarPlateNoDiscriminate/Core/Resource/*"
+  s.resources = "AppCarPlateNoDiscriminate/Core/Resources/*"
   
   s.dependency 'CommonTools4iOS'
   # s.public_header_files = "Classes/**/*.h"
