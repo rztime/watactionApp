@@ -82,7 +82,7 @@ Pod::Spec.new do |s|
 
   s.source       = { :svn => "svn://huangkun@svn.witaction.com/EntranceGuard/branches/zxdoor_platform/trunk/APP/Modules4iOS/trunk/AppLoginManager4iOS" } #  :tag => "#{s.version}"
 
-
+  s.static_framework = true  # 静态库 swift用的时候，pod报错
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
   #  CocoaPods is smart about how it includes source code. For source files

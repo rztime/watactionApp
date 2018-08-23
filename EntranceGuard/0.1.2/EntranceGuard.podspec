@@ -1,5 +1,5 @@
 #
-#  Be sure to run `pod spec lint AppCarPlateNoDiscriminate.podspec' to ensure this is a
+#  Be sure to run `pod spec lint EntranceGuard.podspec' to ensure this is a
 #  valid spec and to remove all comments including this before submitting the spec.
 #
 #  To learn more about Podspec attributes see http://docs.cocoapods.org/specification.html
@@ -15,9 +15,9 @@ Pod::Spec.new do |s|
   #  summary should be tweet-length, and the description more in depth.
   #
 
-  s.name         = "AppCarPlateNoDiscriminate"
-  s.version      = "0.0.2"
-  s.summary      = "车牌号识别 图片获取"
+  s.name         = "EntranceGuard"
+  s.version      = "0.1.1"
+  s.summary      = "小门安家模块"
 
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?
@@ -25,7 +25,7 @@ Pod::Spec.new do |s|
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
   s.description  = <<-DESC
-  车牌号识别 图片获取
+                  小门安家模块
                    DESC
 
   s.homepage     = "https://github.com/witactionAppTeam/witactionApp.git"
@@ -80,7 +80,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :svn => "svn://huangkun@svn.witaction.com/EntranceGuard/branches/zxdoor_platform/trunk/APP/Modules4iOS/trunk/AppCarPlateNoDiscriminate" } #  :tag => "#{s.version}"
+  s.source       = { :svn => "svn://huangkun@svn.witaction.com/EntranceGuard/branches/zxdoor_bzf/trunk/APP/IOS/EntranceGuard" } #  :tag => "#{s.version}"
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -91,13 +91,18 @@ Pod::Spec.new do |s|
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files  = "AppCarPlateNoDiscriminate/Core/*.{h,m}"
-  s.resources = "AppCarPlateNoDiscriminate/Core/Resources/*"
-  
-  s.dependency 'CommonTools4iOS'
+  s.source_files  = "EGAPP", "EntranceGuard/EGAPP/**/*.{h,m}"
+  s.resources = "EntranceGuard/EGAPP/**/*.{bundle}"
+
   # s.public_header_files = "Classes/**/*.h"
 
-  s.static_framework = true  # 静态库 swift用的时候，pod报错
+s.prefix_header_contents = <<-EOS
+
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import "EGCommon.h"
+
+EOS
   # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
   #  A list of resources included with the Pod. These are copied into the
@@ -111,6 +116,11 @@ Pod::Spec.new do |s|
 
   # s.preserve_paths = "FilesToSave", "MoreFilesToSave"
 
+# 用到的第三方的.a .framework 如微信，支付宝
+  s.vendored_libraries = 'EntranceGuard/EGAPP/**/*.{a}'
+  s.vendored_frameworks = 'EntranceGuard/EGAPP/**/*.{framework}'
+  
+  s.static_framework = true  # 静态库 swift用的时候，pod报错
 
   # ――― Project Linking ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
@@ -134,6 +144,24 @@ Pod::Spec.new do |s|
   # s.requires_arc = true
 
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
-  # s.dependency "JSONKit", "~> 1.4"
+  s.dependency 'CommonTools4iOS'
+  
+  s.dependency 'MJRefresh'
+  s.dependency 'SDWebImage'
+  s.dependency 'IQKeyboardManager'
+  s.dependency 'AFNetworking'
+  s.dependency 'SDCycleScrollView'
+
+  s.dependency 'SHSegmentedControl'
+
+  s.dependency 'MobileVLCKit'
+
+  s.dependency 'CocoaAsyncSocket' 
+
+  s.dependency 'JPush'  # 极光推送
+
+  s.dependency 'CommonTools4iOS'
+  s.dependency 'AppMapManager/AppLocationManager' # 地图定位功能
+  s.dependency 'AppCarPlateNoDiscriminate'
 
 end

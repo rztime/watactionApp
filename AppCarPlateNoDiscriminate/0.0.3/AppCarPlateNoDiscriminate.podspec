@@ -94,10 +94,12 @@ Pod::Spec.new do |s|
   s.source_files  = "AppCarPlateNoDiscriminate/Core/*.{h,m}"
   s.resources = "AppCarPlateNoDiscriminate/Core/Resources/*"
   
+  s.static_framework = true  # 静态库 swift用的时候，pod报错
+  
   s.dependency 'CommonTools4iOS'
   # s.public_header_files = "Classes/**/*.h"
 
-  s.static_framework = true  # 静态库 swift用的时候，pod报错
+
   # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
   #  A list of resources included with the Pod. These are copied into the

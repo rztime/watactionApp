@@ -1,5 +1,5 @@
 #
-#  Be sure to run `pod spec lint AppCarPlateNoDiscriminate.podspec' to ensure this is a
+#  Be sure to run `pod spec lint AppMapManager.podspec' to ensure this is a
 #  valid spec and to remove all comments including this before submitting the spec.
 #
 #  To learn more about Podspec attributes see http://docs.cocoapods.org/specification.html
@@ -15,9 +15,9 @@ Pod::Spec.new do |s|
   #  summary should be tweet-length, and the description more in depth.
   #
 
-  s.name         = "AppCarPlateNoDiscriminate"
+  s.name         = "AppMapManager"
   s.version      = "0.0.2"
-  s.summary      = "车牌号识别 图片获取"
+  s.summary      = "地图组件"
 
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?
@@ -25,7 +25,10 @@ Pod::Spec.new do |s|
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
   s.description  = <<-DESC
-  车牌号识别 图片获取
+                  地图组件
+                  包括1.地图常用功能以block的形式替代delegate
+                  2.地图搜索一行代码搞定
+                  3.获取定位
                    DESC
 
   s.homepage     = "https://github.com/witactionAppTeam/witactionApp.git"
@@ -80,7 +83,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :svn => "svn://huangkun@svn.witaction.com/EntranceGuard/branches/zxdoor_platform/trunk/APP/Modules4iOS/trunk/AppCarPlateNoDiscriminate" } #  :tag => "#{s.version}"
+  s.source       = { :svn => "svn://huangkun@svn.witaction.com/EntranceGuard/branches/zxdoor_platform/trunk/APP/Modules4iOS/trunk/AppMapManager" } #  :tag => "#{s.version}"
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -91,13 +94,23 @@ Pod::Spec.new do |s|
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files  = "AppCarPlateNoDiscriminate/Core/*.{h,m}"
-  s.resources = "AppCarPlateNoDiscriminate/Core/Resources/*"
-  
-  s.dependency 'CommonTools4iOS'
-  # s.public_header_files = "Classes/**/*.h"
+  s.subspec 'AppMapView' do |ss|
+    ss.source_files = 'AppMapManager/Core/AppMapView/*.{h,m}'
+    ss.dependency 'AMap3DMap-NO-IDFA'
+  end
 
-  s.static_framework = true  # 静态库 swift用的时候，pod报错
+  s.subspec 'AppMapSearchManager' do |ss|
+    ss.source_files = 'AppMapManager/Core/AppMapSearchManager/*.{h,m}'
+    ss.dependency 'AMapSearch-NO-IDFA'
+  end
+
+  s.subspec 'AppLocationManager' do |ss|
+    ss.source_files = 'AppMapManager/Core/AppLocationManager/*.{h,m}'
+    ss.dependency 'AMapLocation-NO-IDFA'
+  end
+  # s.public_header_files = "Classes/**/*.h"
+  s.static_framework = true
+
   # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
   #  A list of resources included with the Pod. These are copied into the
@@ -135,5 +148,5 @@ Pod::Spec.new do |s|
 
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
   # s.dependency "JSONKit", "~> 1.4"
-
+  s.dependency 'CommonTools4iOS'
 end

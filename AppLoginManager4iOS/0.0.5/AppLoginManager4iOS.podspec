@@ -1,5 +1,5 @@
 #
-#  Be sure to run `pod spec lint AppCarPlateNoDiscriminate.podspec' to ensure this is a
+#  Be sure to run `pod spec lint AppLoginManager4iOS.podspec' to ensure this is a
 #  valid spec and to remove all comments including this before submitting the spec.
 #
 #  To learn more about Podspec attributes see http://docs.cocoapods.org/specification.html
@@ -15,9 +15,9 @@ Pod::Spec.new do |s|
   #  summary should be tweet-length, and the description more in depth.
   #
 
-  s.name         = "AppCarPlateNoDiscriminate"
-  s.version      = "0.0.2"
-  s.summary      = "车牌号识别 图片获取"
+  s.name         = "AppLoginManager4iOS"
+  s.version      = "0.0.4"
+  s.summary      = "平安社区统一登录"
 
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?
@@ -25,7 +25,7 @@ Pod::Spec.new do |s|
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
   s.description  = <<-DESC
-  车牌号识别 图片获取
+                  平安社区统一登录模块
                    DESC
 
   s.homepage     = "https://github.com/witactionAppTeam/witactionApp.git"
@@ -80,7 +80,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :svn => "svn://huangkun@svn.witaction.com/EntranceGuard/branches/zxdoor_platform/trunk/APP/Modules4iOS/trunk/AppCarPlateNoDiscriminate" } #  :tag => "#{s.version}"
+  s.source       = { :svn => "svn://huangkun@svn.witaction.com/EntranceGuard/branches/zxdoor_platform/trunk/APP/Modules4iOS/trunk/AppLoginManager4iOS" } #  :tag => "#{s.version}"
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -91,13 +91,40 @@ Pod::Spec.new do |s|
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files  = "AppCarPlateNoDiscriminate/Core/*.{h,m}"
-  s.resources = "AppCarPlateNoDiscriminate/Core/Resources/*"
-  
-  s.dependency 'CommonTools4iOS'
+  s.static_framework = true  # 静态库 swift用的时候，pod报错
+
+  s.source_files  = "Core", "AppLoginManager4iOS/Core/LoginManager/*.{h,m}"
+  s.resources = "AppLoginManager4iOS/Core/LoginManager/Resource/*"
+
+  s.subspec 'Http' do |ss|
+    ss.source_files = "AppLoginManager4iOS/Core/LoginManager/Http/*.{h,m}" 
+  end 
+  s.subspec 'Model' do |ss|
+    ss.source_files = "AppLoginManager4iOS/Core/LoginManager/Model/*.{h,m}" 
+  end 
+
+  s.subspec 'Site' do |ss|
+    ss.source_files = "AppLoginManager4iOS/Core/LoginManager/Site/**/*.{h,m}" 
+  end
+
+  s.subspec 'LaunchViewController' do |ss|
+    ss.source_files = "AppLoginManager4iOS/Core/LoginManager/LaunchViewController/*.{h,m}" 
+  end
+
+  s.subspec 'Login' do |ss|
+    ss.source_files = "AppLoginManager4iOS/Core/LoginManager/Login/**/*.{h,m}" 
+  end
   # s.public_header_files = "Classes/**/*.h"
 
-  s.static_framework = true  # 静态库 swift用的时候，pod报错
+  s.dependency 'CommonTools4iOS' 
+  s.dependency 'MJExtension' 
+  s.dependency 'MJRefresh' 
+  s.dependency 'Masonry'  
+  s.dependency 'SDWebImage'
+  s.dependency 'SDCycleScrollView'
+  s.dependency 'BlocksKit'
+  s.dependency 'RZColorful'
+  s.dependency 'AFNetworking' 
   # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
   #  A list of resources included with the Pod. These are copied into the
