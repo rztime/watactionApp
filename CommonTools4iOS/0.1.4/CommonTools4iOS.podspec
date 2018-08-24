@@ -5,7 +5,7 @@ Pod::Spec.new do |s|
   s.summary      = "常用工具"
 
   s.description  = <<-DESC
-                  社区工具
+                  社区工具  
                    DESC
 
   s.homepage     = "https://github.com/witactionAppTeam/witactionApp.git"
