@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "CommonTools4iOS"
-  s.version      = "0.1.9"
+  s.version      = "0.2.0"
   s.summary      = "常用工具"
 
   s.description  = <<-DESC
